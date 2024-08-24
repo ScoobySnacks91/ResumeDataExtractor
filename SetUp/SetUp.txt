@@ -1,0 +1,31 @@
+1.Install Python 3.9.7 from: https://www.python.org/downloads/release/python-397/
+
+2.Add python to enviroment variables: inside the folder where python was downloaded may look like this :"C:\Users\User\AppData\Local\Programs\Python" 
+Find two paths:
+path1:C:\Users\User\AppData\Local\Programs\Python\Python39\python
+path2:C:\Users\User\AppData\Local\Programs\Python\Python39\Scripts
+
+Now go to windows search bar and search "environment variables"
+
+System Variables>select Path>edit>New>(add path1,path2)
+
+Check installation (windows key+R>cmd>enter>python --version>output:3.9.7)
+
+3.
+pip install pymupdf
+pip install paddleocr
+pip install paddlepaddle
+pip install paddleclas
+pip install tensorflow
+pip install protobuf==3.20.3
+pip install tensorflow-hub
+pip install kagglehub
+
+4. Run the DownloadUse.py script which is located inside SetUp folder
+Copy paste the path where the model is saved inside the main.py script in line Use_model_paht=r"path of model"
+
+5.
+pip install regex
+pip install spacy
+python -m spacy download en_core_web_md
+pip install openpyxl
