@@ -74,12 +74,20 @@ def ProcessResume():
             custom_model(model)
             print("==================================================================================================================")
 
-        print(Fore.LIGHTBLACK_EX+"Structuring Data:")   
+        print(Fore.LIGHTGREEN_EX+"Structuring Data:")   
         print("==================================================================================================================")
         from Processes.Data_Structuring import DataSrtucturing
         DataSrtucturing(spacy,nlp)
         print("==================================================================================================================")
-    
+
+        print(Fore.LIGHTBLACK_EX+"Delete Input file content:")   
+        print("==================================================================================================================")
+        from Processes.File_Manager import clear_folder
+        clear_folder("Input")
+        print("==================================================================================================================")
+
+
+
 
     end_time = time.time()
     execution_time = end_time - start_time

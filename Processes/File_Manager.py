@@ -3,8 +3,7 @@ import os
 import shutil
 from PIL import Image
 
-def convert_file_to_images():
-    def clear_folder(folder_path):
+def clear_folder(folder_path):
         """Deletes all files and subdirectories in the given folder."""
         if os.path.exists(folder_path):
             for root, dirs, files in os.walk(folder_path, topdown=False):
@@ -14,6 +13,7 @@ def convert_file_to_images():
                     shutil.rmtree(os.path.join(root, name))
             print(f"Cleared contents of '{folder_path}'.")
 
+def convert_file_to_images():
     def is_image(file_path):
         """Checks if a given file is an image by trying to open it with PIL."""
         try:
