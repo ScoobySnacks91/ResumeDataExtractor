@@ -13,7 +13,7 @@ def convert_bounding_box(bounding_box):
     height = y2 - y1
     return [x, y, width, height]
 
-def extracted_tables_to_label_studio_json_file_with_paddleOCR(ocr):
+def Ocr_Image_processing(ocr):
     images_folder_path = "data\\images"
     label_studio_task_list = []
     image_files = [f for f in os.listdir(images_folder_path) if f.endswith('.png')]

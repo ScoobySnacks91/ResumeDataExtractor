@@ -33,50 +33,53 @@ def ProcessResume():
     # Run the functions
     print(Fore.CYAN+"\nConverting files to images")
     print("==================================================================================================================")
-    from Processes.Convert_file_to_images import Convert_file_to_images
-    Convert_file_to_images()
-    print("==================================================================================================================")
+    from Processes.File_Manager import convert_file_to_images
+    file_in_input=convert_file_to_images()
+    if(file_in_input==0):
+        print(Fore.RED+"Input folder is empty or file is of wrong type!!!")
+        print(Fore.CYAN+"==================================================================================================================")
+    else:
+        print(Fore.CYAN+"==================================================================================================================")
+        print(Fore.MAGENTA+"Processing OCR Images")
+        print("==================================================================================================================")
 
-    print(Fore.MAGENTA+"Processing OCR Images")
-    print("==================================================================================================================")
+        from Processes.Image_OCR import Ocr_Image_processing
+        Ocr_Image_processing(ocr)
+        print("==================================================================================================================")
 
-    from Processes.Image_OCR import extracted_tables_to_label_studio_json_file_with_paddleOCR
-    extracted_tables_to_label_studio_json_file_with_paddleOCR(ocr)
-    print("==================================================================================================================")
+        print(Fore.BLUE+"Checking if its Europass")
+        print("==================================================================================================================")
 
-    print(Fore.BLUE+"Checking if its Europass")
-    print("==================================================================================================================")
+        from Processes.Europass import IsEuropass
+        IsEuropass()
 
-    from Processes.Europass import IsEuropass
-    IsEuropass()
-
-    # Open the file in read mode
-    with open('data\\isEuropass.txt', 'r') as file:
-        first_line = file.readline().strip().lower()
+        # Open the file in read mode
+        with open('data\\isEuropass.txt', 'r') as file:
+            first_line = file.readline().strip().lower()
     
-    # Convert the first line to 1 or 0
-    isEuropass = 1 if first_line == "yes" else 0 if first_line == "no" else None
-    print("==================================================================================================================")
-    if isEuropass == 0:
-        print(Fore.YELLOW+"USE encoding")
+        # Convert the first line to 1 or 0
+        isEuropass = 1 if first_line == "yes" else 0 if first_line == "no" else None
         print("==================================================================================================================")
+        if isEuropass == 0:
+            print(Fore.YELLOW+"USE encoding")
+            print("==================================================================================================================")
 
-        from Processes.Use import Use
-        Use(Use_model)
+            from Processes.Use import Use
+            Use(Use_model)
+            print("==================================================================================================================")
+
+            print(Fore.GREEN+"Classifying data as experience")
+            print("==================================================================================================================")
+            from Processes.Model import custom_model
+            custom_model(model)
+            print("==================================================================================================================")
+
+        print(Fore.LIGHTBLACK_EX+"Structuring Data:")   
         print("==================================================================================================================")
-
-        print(Fore.GREEN+"Classifying data as experience")
+        from Processes.Data_Structuring import DataSrtucturing
+        DataSrtucturing(spacy,nlp)
         print("==================================================================================================================")
-        from Processes.Model import custom_model
-        custom_model(model)
-        print("==================================================================================================================")
-
-    print(Fore.LIGHTBLACK_EX+"Structuring Data:")   
-    print("==================================================================================================================")
-    from Processes.Data_Structuring import DataSrtucturing
-    DataSrtucturing(spacy,nlp)
-    print("==================================================================================================================")
-
+    
 
     end_time = time.time()
     execution_time = end_time - start_time

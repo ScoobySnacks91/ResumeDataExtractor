@@ -119,7 +119,7 @@ def DataSrtucturing(spacy,nlp):
     #Role
     #========================================================================================
     # Load the Excel file
-    Professions_file_path = "data\\Professions.xlsx"  # Adjust the file path if necessary
+    Professions_file_path = "Professions\\Professions.xlsx"  # Adjust the file path if necessary
     df = pd.read_excel(Professions_file_path, sheet_name='Sheet1')  # Update the file and sheet name as needed
 
     # Extract the list of words from the column
